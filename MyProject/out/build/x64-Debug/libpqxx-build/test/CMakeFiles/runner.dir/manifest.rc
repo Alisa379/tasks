@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "D:/c++/visual/6. Working with databases/5. Working with PostgreSQL from C++/MyProject/out/build/x64-Debug/libpqxx-build/test/CMakeFiles/runner.dir/embed.manifest"
