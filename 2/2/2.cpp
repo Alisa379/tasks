@@ -12,10 +12,15 @@ public:
             array[i] = new T [columns];
         }
     }
-    table(T& f) : rows(f.rows), columns(f.columns) {
+    table(const table<T>& f) : rows(f.rows), columns(f.columns) {
         array = new T * [rows];
         for (int i = 0; i < rows; ++i) {
             array[i] = new T[columns];
+        }
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < columns; ++j) {
+                array[i][j] = f.array[i][j];
+            }
         }
     }
     T* operator[](int s) {
@@ -25,22 +30,25 @@ public:
         return array[s];
     }
     
-    T& operator=(const T& other) {
+    table<T>& operator=(const table<T>& other) {
         if (this != &other) {
-            delete[] this->array;
-            this.array = new T * [other.rows];
-            this.rows = other.rows;
-            this.columns = other.columns;
-            for (int i = 0; i < this.rows; ++i) {
-                this.array[i] = new T[this.columns];
+            for (int i = 0; i < rows; i++) {
+                delete[] array[i];
             }
-            for (int i = 0; i < this.rows; ++i) {
-                for (int j = 0; j < this.columns; ++j) {
-                    this.array[i][j] = other.array[i][j];
+            delete[] array;
+            array = new T * [other.rows];
+            rows = other.rows;
+            columns = other.columns;
+            for (int i = 0; i < rows; ++i) {
+                array[i] = new T[columns];
+            }
+            for (int i = 0; i < rows; ++i) {
+                for (int j = 0; j < columns; ++j) {
+                    array[i][j] = other.array[i][j];
                 }
             }
         }
-        return this;
+        return *this;
     }
     ~table() {
         for (int i = 0; i < rows; i++) {
