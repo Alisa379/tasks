@@ -1,24 +1,23 @@
-﻿
-#include <iostream>
+﻿#include <iostream>
 #include <thread>
 
 using namespace std::chrono_literals;
 
-int x = 0;
+std::atomic<int> x = 0;
 
-void client(int& x) {
+void client(std::atomic<int>& x) {
     for (int i = 0; i < 10; ++i) {
         std::this_thread::sleep_for(1000ms);
-        x++;
-        std::cout << x << " ";
+        x.store(x.load() + 1);
+        std::cout << x.load() << " ";
     }
 }
 
-void oper(int& x) {
+void oper(std::atomic<int>& x) {
     for (int i = 0; i < 10; ++i) {
         std::this_thread::sleep_for(2000ms);
-        x--;
-        std::cout << x << " ";
+        x.store(x.load() - 1);
+        std::cout << x.load() << " ";
     }
 }
 
