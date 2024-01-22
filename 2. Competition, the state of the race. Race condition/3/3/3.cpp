@@ -24,13 +24,12 @@ public:
 };
 
 void swap1(Data& ob1, Data& ob2) {
-    ob1.m.lock();
-    ob2.m.lock();
+    std::lock(ob1.m, ob2.m);
+    std::lock_guard lk1(ob1.m, std::adopt_lock);
+    std::lock_guard lk2(ob2.m, std::adopt_lock);
     Data temp(ob1);
     ob1 = ob2;
     ob2 = temp;
-    ob1.m.unlock();
-    ob2.m.unlock();
 }
 
 void swap2(Data& ob1, Data& ob2) {
@@ -41,8 +40,9 @@ void swap2(Data& ob1, Data& ob2) {
 }
 
 void swap3(Data& ob1, Data& ob2) {
-    std::unique_lock lk1(ob1.m);
-    std::unique_lock lk2(ob2.m);
+    std::unique_lock lk1{ ob1.m, std::defer_lock };
+    std::unique_lock lk2{ ob2.m, std::defer_lock };
+    std::lock(lk1, lk2);
     Data temp(ob1);
     ob1 = ob2;
     ob2 = temp;
