@@ -14,21 +14,27 @@ public:
 	Line(int _x1, int _x2, int _y1, int _y2);
 	void setSquare();
 	void setVolume();
+	void shift(Line& shape, int m, int n);
+	void scaleX(Line& shape, int a);
+	void scaleY(Line& shape, int d);
+	void scale(Line& shape, int s);
 };
 
 class Sqr : public Shape {
 public:
 	int x1 = 0, y1 = 0,
 		x2 = 0, y2 = 0,
-		x3 = 0, y3 = 0,
-		x4 = 0, y4 = 0;
+		x3 = 0, y3 = 0;
 	double volume;
 	double square;
 	int a;
-	int b;
-	Sqr(int _x1, int _x2, int _x3, int _x4, int _y1, int _y2, int _y3, int _y4);
+	Sqr(int _x1, int _x2, int _x3, int _y1, int _y2, int _y3);
 	void setSquare();
 	void setVolume();
+	void shift(Sqr& shape, int m, int n);
+	void scaleX(Sqr& shape, int a);
+	void scaleY(Sqr& shape, int d);
+	void scale(Sqr& shape, int s);
 };
 
 class Cube : public Shape {
@@ -36,19 +42,18 @@ public:
 	int x1 = 0, y1 = 0, z1 = 0,
 		x2 = 0, y2 = 0, z2 = 0,
 		x3 = 0, y3 = 0, z3 = 0,
-		x4 = 0, y4 = 0, z4 = 0,
-		x5 = 0, y5 = 0, z5 = 0,
-		x6 = 0, y6 = 0, z6 = 0,
-		x7 = 0, y7 = 0, z7 = 0,
-		x8 = 0, y8 = 0, z8 = 0;
+		x4 = 0, y4 = 0, z4 = 0;
 	double volume;
 	double square;
 	int a;
-	int b;
-	int c;
-	Cube(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4, int _x5, int _y5, int _z5, int _x6, int _y6, int _z6, int _x7, int _y7, int _z7, int _x8, int _y8, int _z8);
+	Cube(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4);
 	void setSquare();
 	void setVolume();
+	void shift(Cube& shape, int m, int n, int k);
+	void scaleX(Cube& shape, int a);
+	void scaleY(Cube& shape, int d);
+	void scaleZ(Cube& shape, int e);
+	void scale(Cube& shape, int s);
 };
 
 class Circle : public Shape {

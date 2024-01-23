@@ -15,33 +15,30 @@ void Line::setVolume() {
 }
 
 
-Sqr::Sqr(int _x1, int _x2, int _x3, int _x4, int _y1, int _y2, int _y3, int _y4) : x1(_x1), x2(_x2), y1(_y1), y2(_y2), x3(_x3), x4(_x4), y3(_y3), y4(_y4) {
+Sqr::Sqr(int _x1, int _x2, int _x3, int _y1, int _y2, int _y3) : x1(_x1), x2(_x2), y1(_y1), y2(_y2), x3(_x3), y3(_y3) {
 	a = abs(x1 - x2);
-	b = abs(y1 - y2);
 	setSquare();
 	setVolume();
 }
 void Sqr::setSquare() {
-	square = a * b;
+	square = pow(a, 2);
 }
 void Sqr::setVolume() {
 	volume = 0;
 }
 
 
-Cube::Cube(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4, int _x5, int _y5, int _z5, int _x6, int _y6, int _z6, int _x7, int _y7, int _z7, int _x8, int _y8, int _z8) 
-	: x1(_x1), x2(_x2), y1(_y1), y2(_y2), x3(_x3), x4(_x4), y3(_y3), y4(_y4), x5(_x5), x6(_x6), x7(_x7), x8(_x8), y5(_y5), y6(_y6), y7(_y7), y8(_y8), z1(_z1), z2(_z2), z3(_z3), z4(_z4), z5(_z5), z6(_z6), z7(_z7), z8(_z8) {
+Cube::Cube(int _x1, int _y1, int _z1, int _x2, int _y2, int _z2, int _x3, int _y3, int _z3, int _x4, int _y4, int _z4) 
+	: x1(_x1), x2(_x2), y1(_y1), y2(_y2), x3(_x3), x4(_x4), y3(_y3), y4(_y4), z1(_z1), z2(_z2), z3(_z3), z4(_z4) {
 	a = abs(x1 - x2);
-	b = abs(y1 - y2);
-	c = abs(z1 - z2);
 	setSquare();
 	setVolume();
 }
 void Cube::setSquare() {
-	square = 2 * a * b + 2 * a * c + 2 * b * c;
+	square = pow(a, 2) * 6;
 }
 void Cube::setVolume() {
-	volume = a * b * c;
+	volume = pow(a, 3);
 }
 
 
@@ -50,7 +47,7 @@ Circle::Circle(int _x1, int _y1, double _radius) : x1(_x1), y1(_y1), radius(_rad
 	setVolume();
 }
 void Circle::setSquare() {
-	square = M_PI * radius * radius;
+	square = M_PI * pow(radius, 2);
 }
 void Circle::setVolume() {
 	volume = 0;
@@ -61,8 +58,75 @@ Cylinder::Cylinder(int _x1, int _y1, double _radius, double _height) : x1(_x1), 
 	setVolume();
 }
 void Cylinder::setSquare() {
-	square = M_PI * radius * radius + 2 * radius * height;
+	square = 2 * M_PI * radius * (height + radius);
 }
 void Cylinder::setVolume() {
-	volume = M_PI * radius * radius * height;
+	volume = M_PI * pow(radius, 2) * height;
+}
+
+void Line::shift(Line& shape, int m, int n) {
+	shape.x1 += m; shape.y1 += n;
+	shape.x2 += m; shape.y2 += n;
+}
+void Sqr::shift(Sqr& shape, int m, int n) {
+	shape.x1 += m; shape.y1 += n;
+	shape.x2 += m; shape.y2 += n;
+	shape.x3 += m; shape.y3 += n;
+}
+void Cube::shift(Cube& shape, int m, int n, int k) {
+	shape.x1 += m; shape.y1 += n; shape.z1 += k;
+	shape.x2 += m; shape.y2 += n; shape.z2 += k;
+	shape.x3 += m; shape.y3 += n; shape.z3 += k;
+	shape.x4 += m; shape.y4 += n; shape.z4 += k;
+}
+void Line::scaleX(Line& shape, int a) {
+	shape.x1 *= a;
+	shape.x2 *= a;
+}
+void Sqr::scaleX(Sqr& shape, int a) {
+	shape.x1 *= a;
+	shape.x2 *= a;
+	shape.x3 *= a;
+}
+void Cube::scaleX(Cube& shape, int a) {
+	shape.x1 *= a;
+	shape.x2 *= a;
+	shape.x3 *= a;
+	shape.x4 *= a;
+}
+void Line::scaleY(Line& shape, int d) {
+	shape.y1 *= d;
+	shape.y2 *= d;
+}
+void Sqr::scaleY(Sqr& shape, int d) {
+	shape.y1 *= d;
+	shape.y2 *= d;
+	shape.y3 *= d;
+}
+void Cube::scaleY(Cube& shape, int d) {
+	shape.y1 *= d;
+	shape.y2 *= d;
+	shape.y3 *= d;
+	shape.y4 *= d;
+}
+void Cube::scaleZ(Cube& shape, int e) {
+	shape.z1 *= e;
+	shape.y2 *= e;
+	shape.z3 *= e;
+	shape.z4 *= e;
+}
+void Line::scale(Line& shape, int s) {
+	shape.x1 /= s; shape.y1 /= s;
+	shape.x2 /= s; shape.y2 /= s;
+}
+void Sqr::scale(Sqr& shape, int s) {
+	shape.x1 /= s; shape.y1 /= s;
+	shape.x2 /= s; shape.y2 /= s;
+	shape.x3 /= s; shape.y3 /= s;
+}
+void Cube::scale(Cube& shape, int s) {
+	shape.x1 /= s; shape.y1 /= s; shape.z1 /= s;
+	shape.x2 /= s; shape.y2 /= s; shape.z2 /= s;
+	shape.x3 /= s; shape.y3 /= s; shape.z3 /= s;
+	shape.x4 /= s; shape.y4 /= s; shape.z4 /= s;
 }
