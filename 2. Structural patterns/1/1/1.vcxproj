@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{384cbf2e-047d-4d37-a2f8-8cb3ad6971bb}</ProjectGuid>
-    <RootNamespace>My2</RootNamespace>
+    <ProjectGuid>{b05c8167-baef-47cc-a46a-2d12c870220e}</ProjectGuid>
+    <RootNamespace>My1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,11 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="2.cpp" />
-    <ClCompile Include="sql_query_builder.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="sql_query_builder.h" />
+    <ClCompile Include="1.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
