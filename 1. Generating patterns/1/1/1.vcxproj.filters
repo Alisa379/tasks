@@ -18,12 +18,12 @@
     <ClCompile Include="1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="shape.cpp">
+    <ClCompile Include="sql_query_builder.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="shape.h">
+    <ClInclude Include="sql_query_builder.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
