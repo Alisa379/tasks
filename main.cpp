@@ -1,15 +1,11 @@
-#include <QCoreApplication>
-#include <QtNetwork>
-#include <QtSql>
+#include "mainwindow.h"
 
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
-
-    QTcpSocket q1;
-    QSqlQuery q2;
-
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
     return a.exec();
-
 }
